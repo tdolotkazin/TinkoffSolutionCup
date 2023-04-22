@@ -16,20 +16,33 @@ public final class Card: UIView, ShadowHolder {
         static let cornerRadius: CGFloat = 24
     }
 
+    public enum CardStyle {
+        case regular
+        case pale
+    }
+
     private let header: Label
     private let subheader: Label
     private let avatar: Avatar
     private var layout: Layout?
+    private let style: CardStyle
 
     var shadowLayer: CAShapeLayer?
 
-    public init(header: String, subheader: String, avatar: UIImage?) {
+    public init(header: String, subheader: String, avatar: UIImage?, style: CardStyle = .regular) {
         self.header = Label(style: .header, text: header)
         self.subheader = Label(style: .subheader, text: subheader)
         self.avatar = Avatar(image: avatar)
+        self.style = style
         super.init(frame: .zero)
         addSubviews(self.header, self.subheader, self.avatar)
-        backgroundColor = Colors.cardBackgorund
+        switch style {
+        case .regular:
+            backgroundColor = Colors.regularCardBackgorund
+        case .pale:
+            backgroundColor = Colors.paleCardBackgorund
+        }
+
         layer.cornerRadius = Spec.cornerRadius
     }
 
@@ -38,7 +51,9 @@ public final class Card: UIView, ShadowHolder {
         header.setFrame(layout?.headerFrame)
         subheader.setFrame(layout?.subheaderFrame)
         avatar.setFrame(layout?.avatarFrame)
-        addShadow()
+        if case .regular = style {
+            addShadow()
+        }
     }
 
     public override func sizeThatFits(_ size: CGSize) -> CGSize {

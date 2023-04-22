@@ -1,15 +1,17 @@
 import UIKit
 
-enum Colors {
-    static let header = UIColor(hex: "#333333FF")
-    static let subHeader = UIColor(hex: "#9299A2FF")
-    static let title = UIColor(hex: "#333333FF") // TODO: - Gradient
-    static let description = UIColor(hex: "#9299A2FF")
-    static let cardBackgorund = UIColor(hex: "#FFFFFFFF")
+public enum Colors {
+    public static let background = UIColor(hex: "#FAFAFAFF")
+    public static let header = UIColor(hex: "#333333FF")
+    public static let subHeader = UIColor(hex: "#9299A2FF")
+    public static let title = UIColor(hex: "#333333FF") // TODO: - Gradient
+    public static let description = UIColor(hex: "#9299A2FF")
+    public static let regularCardBackgorund = UIColor(hex: "#FFFFFFFF")
+    public static let paleCardBackgorund = UIColor(hex: "#F6F7F8FF")
 }
 
-extension UIColor {
-    public convenience init?(hex: String) {
+private extension UIColor {
+    convenience init?(hex: String) {
         let r, g, b, a: CGFloat
 
         if hex.hasPrefix("#") {

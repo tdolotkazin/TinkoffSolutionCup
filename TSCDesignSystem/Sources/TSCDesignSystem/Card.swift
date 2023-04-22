@@ -19,7 +19,7 @@ public final class Card: UIView, ShadowHolder {
         self.header = CardHeader(configuration: headerConfiguration)
         self.style = style
         super.init(frame: .zero)
-        addSubviews(header)
+        addSubview(header)
         switch style {
         case .regular:
             backgroundColor = Colors.regularCardBackgorund

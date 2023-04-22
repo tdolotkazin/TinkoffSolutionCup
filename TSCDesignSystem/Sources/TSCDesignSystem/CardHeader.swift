@@ -68,17 +68,18 @@ public final class CardHeader: UIView {
         let headerSize = header.sizeThatFits(CGSize(
             width: headerMaxWidth,
             height: size.height))
-        header.setFrame(CGRect(
-            origin: CGPoint(
-                x: Spec.headerInsets.left,
-                y: Spec.headerInsets.top
-            ), size: headerSize))
         let subheaderSize = subheader?.sizeThatFits(
             CGSize(
                 width: headerMaxWidth,
                 height: size.height - headerSize.height - Spec.headerInsets.top - Spec.headerInsets.bottom
             )
         ) ?? .zero
+        header.setFrame(CGRect(
+            origin: CGPoint(
+                x: Spec.headerInsets.left,
+                y: subheader != nil ? Spec.headerInsets.top : 24
+            ), size: headerSize))
+
         subheader?.setFrame(CGRect(
             origin: CGPoint(
                 x: header.frame.minX,
